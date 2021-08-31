@@ -98,8 +98,8 @@ create table Users
     
     <pre><code class="has-line-data" data-line-start="1" data-line-end="8">    public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = <span class="hljs-string">"Server=.\\SQLEXPRESS;Initial Catalog=userstore;Integrated Security=True"</span>;
-            services.AddTransient&lt;IUserRepository, UserRepository&gt;(provider =&gt; new UserRepository(connectionString));
+            string connectionString = "Server=.\\SQLEXPRESS;Initial Catalog=userstore;Integrated Security=True";
+            services.AddTransient<IUserRepository, UserRepository>(provider => new UserRepository(connectionString));
             services.AddControllersWithViews();
         }
 </code></pre>
