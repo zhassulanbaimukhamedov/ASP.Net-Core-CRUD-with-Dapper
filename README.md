@@ -103,7 +103,7 @@ create table Users
 </code></pre>
     
 7. Поменяем HomeController для взаимодействия с бд и выполнения CRUD-операции. (Let's change HomeController for interaction with the database and performing a CRUD-operation)
-    <pre><code class="has-line-data" data-line-start="1" data-line-end="65">public class HomeController : Controller
+    <pre><code class="has-line-data" data-line-start="1" data-line-end="65"> public class HomeController : Controller
     {
         IUserRepository repo;
         public HomeController(IUserRepository r)
