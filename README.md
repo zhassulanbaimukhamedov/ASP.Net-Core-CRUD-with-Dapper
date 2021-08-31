@@ -10,13 +10,14 @@
     }
 
 </code></pre>
-5. Создадим базу userstore и таблицу Users. (Create database userstore, and Users table)
-  create database userstore;
-  create table Users 
+4. Создадим базу userstore и таблицу Users. (Create database userstore, and Users table)
+ <pre><code class="has-line-data" data-line-start="1" data-line-end="11">create database userstore;
+create table Users 
   (
     Id int not null auto_increment, 
-    Name nvarchar(5) not null, 
+    Name nvarchar(<span class="hljs-number">5</span>) not null, 
     Age int not null,
     primary_key (Id)
   )
 
+</code></pre>
