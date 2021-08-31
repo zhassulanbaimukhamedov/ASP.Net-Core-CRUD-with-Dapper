@@ -95,14 +95,13 @@ create table Users
 .    
 6. Далее изменим Startup (Next, let's change Startup)
     С помощью механизма внедрения зависимостей здесь устанавливается зависимость для интерфейса IUserRepository в виде объекта UserRepository, в конструктор которого передается строка подключения к бд.
-    
-    <pre><code class="has-line-data" data-line-start="1" data-line-end="8">    public void ConfigureServices(IServiceCollection services)
+       public void ConfigureServices(IServiceCollection services)
         {
             string connectionString = "Server=.\\SQLEXPRESS;Initial Catalog=userstore;Integrated Security=True";
             services.AddTransient<IUserRepository, UserRepository>(provider => new UserRepository(connectionString));
             services.AddControllersWithViews();
         }
-</code></pre>
+ 
 .
 .
 .    
