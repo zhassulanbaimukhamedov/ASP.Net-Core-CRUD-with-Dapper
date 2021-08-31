@@ -21,3 +21,71 @@ create table Users
   )
 
 </code></pre>
+
+5. В папку Models добавим интерфейс и класс репозитория, через который будем работать с базой данных. (Add interface and class of repository to the Models folder, for integrate with database)
+<pre><code class="has-line-data" data-line-start="1" data-line-end="66">    public interface IUserRepository
+    {
+        void Create(User user);
+        void Delete(int id);
+        User Get(int id);
+        List&lt;User&gt; GetUsers();
+        void Update(User user);
+    }
+    public class UserRepository : IUserRepository
+    {
+        string connectionString = null;
+        public UserRepository(string conn)
+        {
+            connectionString = conn;
+        }
+        public List&lt;User&gt; <span class="hljs-function"><span class="hljs-title">GetUsers</span></span>()
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                <span class="hljs-built_in">return</span> db.Query&lt;User&gt;(<span class="hljs-string">"SELECT * FROM Users"</span>).ToList();
+            }
+        }
+ 
+        public User Get(int id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                <span class="hljs-built_in">return</span> db.Query&lt;User&gt;(<span class="hljs-string">"SELECT * FROM Users WHERE Id = @id"</span>, new { id }).FirstOrDefault();
+            }
+        }
+ 
+        public void Create(User user)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = <span class="hljs-string">"INSERT INTO Users (Name, Age) VALUES(@Name, @Age)"</span>;
+                db.Execute(sqlQuery, user);
+ 
+                // если мы хотим получить id добавленного пользователя
+                //var sqlQuery = <span class="hljs-string">"INSERT INTO Users (Name, Age) VALUES(@Name, @Age); SELECT CAST(SCOPE_IDENTITY() as int)"</span>;
+                //int? userId = db.Query&lt;int&gt;(sqlQuery, user).FirstOrDefault();
+                //user.Id = userId.Value;
+            }
+        }
+ 
+        public void Update(User user)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = <span class="hljs-string">"UPDATE Users SET Name = @Name, Age = @Age WHERE Id = @Id"</span>;
+                db.Execute(sqlQuery, user);
+            }
+        }
+ 
+        public void Delete(int id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = <span class="hljs-string">"DELETE FROM Users WHERE Id = @id"</span>;
+                db.Execute(sqlQuery, new { id });
+            }
+        }
+    }
+
+</code></pre>
+
