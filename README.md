@@ -167,3 +167,36 @@ create table Users
         }
     }
 </code></pre>
+
+8. Добавим представления следующим образом. (Let's add view as follows)
+    - Index.cshtml
+    <pre><code class="has-line-data" data-line-start="1" data-line-end="31">@model IEnumerable&lt;DapperMvcApp.Models.User&gt;
+@{
+    ViewData[<span class="hljs-string">"Title"</span>] = <span class="hljs-string">"Список пользователей"</span>;
+}
+&lt;h2&gt;@ViewData[<span class="hljs-string">"Title"</span>]&lt;/h2&gt;
+&lt;p&gt;
+    &lt;a asp-controller=<span class="hljs-string">"Home"</span> asp-action=<span class="hljs-string">"Create"</span>&gt;Добавить&lt;/a&gt;
+&lt;/p&gt;
+&lt;table class=<span class="hljs-string">"table"</span>&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Имя&lt;/th&gt;
+        &lt;th&gt;Возраст&lt;/th&gt;
+        &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+ 
+    @foreach (var item <span class="hljs-keyword">in</span> Model)
+    {
+        &lt;tr&gt;
+            &lt;td&gt;@item.Name&lt;/td&gt;
+            &lt;td&gt;
+                @item.Age
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;a asp-controller=<span class="hljs-string">"Home"</span> asp-action=<span class="hljs-string">"Edit"</span> asp-route-id=<span class="hljs-string">"@item.Id"</span>&gt;Изменить&lt;/a&gt; |
+                &lt;a asp-controller=<span class="hljs-string">"Home"</span> asp-action=<span class="hljs-string">"Delete"</span> asp-route-id=<span class="hljs-string">"@item.Id"</span>&gt;Удалить&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    }
+&lt;/table&gt;
+</code></pre>
