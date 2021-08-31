@@ -89,8 +89,10 @@ create table Users
         }
     }
 
-</code></pre>...
-
+</code></pre>
+.
+.
+.    
 6. Далее изменим Startup (Next, let's change Startup)
     С помощью механизма внедрения зависимостей здесь устанавливается зависимость для интерфейса IUserRepository в виде объекта UserRepository, в конструктор которого передается строка подключения к бд.
     
@@ -101,7 +103,9 @@ create table Users
             services.AddControllersWithViews();
         }
 </code></pre>...
-    
+.
+.
+.    
 7. Поменяем HomeController для взаимодействия с бд и выполнения CRUD-операции. (Let's change HomeController for interaction with the database and performing a CRUD-operation)
     <pre><code class="has-line-data" data-line-start="1" data-line-end="65"> public class HomeController : Controller
     {
@@ -167,7 +171,9 @@ create table Users
         }
     }
 </code></pre>...
-
+.
+.
+.
 8. Добавим представления следующим образом. (Let's add view as follows)
     Index.cshtml
  <pre><code class="language-html">@model DapperMvcApp.Models.User
@@ -197,7 +203,9 @@ create table Users
     <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">asp-controller</span>=<span class="hljs-value">"Home"</span> <span class="hljs-attribute">asp-action</span>=<span class="hljs-value">"Index"</span>&gt;</span>Вернуться к списку<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>...
-
+.
+.
+.
 9. Create.cshtml
    <pre><code class="language-html">@model DapperMvcApp.Models.User
  
@@ -227,3 +235,66 @@ create table Users
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 
+.
+.
+.
+Edit.cshtml
+    <pre><code class="language-html">@model DapperMvcApp.Models.User
+@{
+    ViewData["Title"] = "Редактировать пользователя";
+}
+<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>@ViewData["Title"].<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">asp-action</span>=<span class="hljs-value">"Edit"</span> <span class="hljs-attribute">asp-controller</span>=<span class="hljs-value">"Home"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"hidden"</span> <span class="hljs-attribute">asp-for</span>=<span class="hljs-value">"Id"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-group"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">asp-for</span>=<span class="hljs-value">"Name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">asp-for</span>=<span class="hljs-value">"Name"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-group"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">asp-for</span>=<span class="hljs-value">"Age"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">asp-for</span>=<span class="hljs-value">"Age"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-group"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Сохранить"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-outline-secondary"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">asp-controller</span>=<span class="hljs-value">"Home"</span> <span class="hljs-attribute">asp-action</span>=<span class="hljs-value">"Index"</span>&gt;</span>Вернуться к списку<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+   
+.
+.    
+.
+Delete.cshtml
+    <pre><code class="language-html">@model DapperMvcApp.Models.User
+@{
+    ViewData["Title"] = "Удаление пользователя";
+}
+<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>@ViewBag.Title<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">dl</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"dl-horizontal"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>Имя<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span>
+            @Model.Name
+        <span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
+ 
+        <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>Возраст<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span>
+            @Model.Age
+        <span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">dl</span>&gt;</span>
+ 
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">asp-controller</span>=<span class="hljs-value">"Home"</span> <span class="hljs-attribute">asp-action</span>=<span class="hljs-value">"Delete"</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"post"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-group"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-default"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Удалить"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
