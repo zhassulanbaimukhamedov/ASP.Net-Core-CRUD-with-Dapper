@@ -23,6 +23,8 @@ create table Users
 </code></pre>
 
 5. В папку Models добавим интерфейс и класс репозитория, через который будем работать с базой данных. (Add interface and class of repository to the Models folder, for integrate with database)
+ - Dapper предоставляет метод расширения Query<T> для объектов IDbConnection, для осуществления запросов , который в качестве параметра принимает sql-выражение и может возвращать объект типа T, с которым сопоставляются результаты запроса.
+
 <pre><code class="has-line-data" data-line-start="1" data-line-end="66">    public interface IUserRepository
     {
         void Create(User user);
