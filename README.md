@@ -89,7 +89,7 @@ create table Users
         }
     }
 
-</code></pre>
+</code></pre>...
 
 6. Далее изменим Startup (Next, let's change Startup)
     С помощью механизма внедрения зависимостей здесь устанавливается зависимость для интерфейса IUserRepository в виде объекта UserRepository, в конструктор которого передается строка подключения к бд.
@@ -100,7 +100,7 @@ create table Users
             services.AddTransient&lt;IUserRepository, UserRepository&gt;(provider =&gt; new UserRepository(connectionString));
             services.AddControllersWithViews();
         }
-</code></pre>
+</code></pre>...
     
 7. Поменяем HomeController для взаимодействия с бд и выполнения CRUD-операции. (Let's change HomeController for interaction with the database and performing a CRUD-operation)
     <pre><code class="has-line-data" data-line-start="1" data-line-end="65"> public class HomeController : Controller
@@ -166,7 +166,7 @@ create table Users
             <span class="hljs-built_in">return</span> RedirectToAction(<span class="hljs-string">"Index"</span>);
         }
     }
-</code></pre>
+</code></pre>...
 
 8. Добавим представления следующим образом. (Let's add view as follows)
     Index.cshtml
@@ -196,10 +196,8 @@ create table Users
 <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">asp-controller</span>=<span class="hljs-value">"Home"</span> <span class="hljs-attribute">asp-action</span>=<span class="hljs-value">"Index"</span>&gt;</span>Вернуться к списку<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-.
-  .
-    .
+</code></pre>...
+
 9. Create.cshtml
    <pre><code class="language-html">@model DapperMvcApp.Models.User
  
