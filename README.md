@@ -201,7 +201,7 @@ create table Users
 </code></pre>
     
 9. Create.cshtml
-   <pre><code class="language-html">@model DapperMvcApp.Models.User
+   <div id="out"><pre><code class="language-html">@model DapperMvcApp.Models.User
  
 @{
     ViewData["Title"] = "Новый пользователь";
@@ -228,4 +228,4 @@ create table Users
     <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">asp-controller</span>=<span class="hljs-value">"Home"</span> <span class="hljs-attribute">asp-action</span>=<span class="hljs-value">"Index"</span>&gt;</span>Вернуться к списку<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
-    
+</div>
