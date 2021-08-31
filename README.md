@@ -92,6 +92,7 @@ create table Users
 </code></pre>
 
 6. Далее изменим Startup (Next, let's change Startup)
+    - С помощью механизма внедрения зависимостей здесь устанавливается зависимость для интерфейса IUserRepository в виде объекта UserRepository, в конструктор которого передается строка подключения к бд.
     
     <pre><code class="has-line-data" data-line-start="1" data-line-end="8">    public void ConfigureServices(IServiceCollection services)
         {
@@ -99,4 +100,70 @@ create table Users
             services.AddTransient&lt;IUserRepository, UserRepository&gt;(provider =&gt; new UserRepository(connectionString));
             services.AddControllersWithViews();
         }
+</code></pre>
+    
+7. Поменяем HomeController для взаимодействия с бд и выполнения CRUD-операции. (Let's change HomeController for interaction with the database and performing a CRUD-operation)
+    <pre><code class="has-line-data" data-line-start="1" data-line-end="65">    public class HomeController : Controller
+    {
+        IUserRepository repo;
+        public HomeController(IUserRepository r)
+        {
+            repo = r;
+        }
+        public ActionResult <span class="hljs-function"><span class="hljs-title">Index</span></span>()
+        {
+            <span class="hljs-built_in">return</span> View(repo.GetUsers());
+        }
+ 
+        public ActionResult Details(int id)
+        {
+            User user = repo.Get(id);
+            <span class="hljs-keyword">if</span> (user != null)
+                <span class="hljs-built_in">return</span> View(user);
+            <span class="hljs-built_in">return</span> NotFound();
+        }
+ 
+        public ActionResult <span class="hljs-function"><span class="hljs-title">Create</span></span>()
+        {
+            <span class="hljs-built_in">return</span> View();
+        }
+ 
+        [HttpPost]
+        public ActionResult Create(User user)
+        {
+            repo.Create(user);
+            <span class="hljs-built_in">return</span> RedirectToAction(<span class="hljs-string">"Index"</span>);
+        }
+ 
+        public ActionResult Edit(int id)
+        {
+            User user = repo.Get(id);
+            <span class="hljs-keyword">if</span> (user != null)
+                <span class="hljs-built_in">return</span> View(user);
+            <span class="hljs-built_in">return</span> NotFound();
+        }
+ 
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+            repo.Update(user);
+            <span class="hljs-built_in">return</span> RedirectToAction(<span class="hljs-string">"Index"</span>);
+        }
+ 
+        [HttpGet]
+        [ActionName(<span class="hljs-string">"Delete"</span>)]
+        public ActionResult ConfirmDelete(int id)
+        {
+            User user = repo.Get(id);
+            <span class="hljs-keyword">if</span> (user != null)
+                <span class="hljs-built_in">return</span> View(user);
+            <span class="hljs-built_in">return</span> NotFound();
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            repo.Delete(id);
+            <span class="hljs-built_in">return</span> RedirectToAction(<span class="hljs-string">"Index"</span>);
+        }
+    }
 </code></pre>
