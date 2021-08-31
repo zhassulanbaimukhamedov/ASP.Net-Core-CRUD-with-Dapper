@@ -170,33 +170,4 @@ create table Users
 
 8. Добавим представления следующим образом. (Let's add view as follows)
     - Index.cshtml
-    <pre><code class="has-line-data" data-line-start="1" data-line-end="31">@model IEnumerable&lt;DapperMvcApp.Models.User&gt;
-@{
-    ViewData[<span class="hljs-string">"Title"</span>] = <span class="hljs-string">"Список пользователей"</span>;
-}
-&lt;h2&gt;@ViewData[<span class="hljs-string">"Title"</span>]&lt;/h2&gt;
-&lt;p&gt;
-    &lt;a asp-controller=<span class="hljs-string">"Home"</span> asp-action=<span class="hljs-string">"Create"</span>&gt;Добавить&lt;/a&gt;
-&lt;/p&gt;
-&lt;table class=<span class="hljs-string">"table"</span>&gt;
-    &lt;tr&gt;
-        &lt;th&gt;Имя&lt;/th&gt;
-        &lt;th&gt;Возраст&lt;/th&gt;
-        &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
- 
-    @foreach (var item <span class="hljs-keyword">in</span> Model)
-    {
-        &lt;tr&gt;
-            &lt;td&gt;@item.Name&lt;/td&gt;
-            &lt;td&gt;
-                @item.Age
-            &lt;/td&gt;
-            &lt;td&gt;
-                &lt;a asp-controller=<span class="hljs-string">"Home"</span> asp-action=<span class="hljs-string">"Edit"</span> asp-route-id=<span class="hljs-string">"@item.Id"</span>&gt;Изменить&lt;/a&gt; |
-                &lt;a asp-controller=<span class="hljs-string">"Home"</span> asp-action=<span class="hljs-string">"Delete"</span> asp-route-id=<span class="hljs-string">"@item.Id"</span>&gt;Удалить&lt;/a&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-    }
-&lt;/table&gt;
-</code></pre>
+    <pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-html"><span class="pln">@model IEnumerable</span><span class="tag">&lt;DapperMvcApp.Models.User&gt;</span></code></li><li class="L1"><code class="lang-html"><span class="pln">@{</span></code></li><li class="L2"><code class="lang-html"><span class="pln">    ViewData["Title"] = "Список пользователей";</span></code></li><li class="L3"><code class="lang-html"><span class="pln">}</span></code></li><li class="L4"><code class="lang-html"><span class="tag">&lt;h2&gt;</span><span class="pln">@ViewData["Title"]</span><span class="tag">&lt;/h2&gt;</span></code></li><li class="L5"><code class="lang-html"><span class="tag">&lt;p&gt;</span></code></li><li class="L6"><code class="lang-html"><span class="pln">    </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">asp-controller</span><span class="pun">=</span><span class="atv">"Home"</span><span class="pln"> </span><span class="atn">asp-action</span><span class="pun">=</span><span class="atv">"Create"</span><span class="tag">&gt;</span><span class="pln">Добавить</span><span class="tag">&lt;/a&gt;</span></code></li><li class="L7"><code class="lang-html"><span class="tag">&lt;/p&gt;</span></code></li><li class="L8"><code class="lang-html"><span class="tag">&lt;table</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"table"</span><span class="tag">&gt;</span></code></li><li class="L9"><code class="lang-html"><span class="pln">    </span><span class="tag">&lt;tr&gt;</span></code></li><li class="L0"><code class="lang-html"><span class="pln">        </span><span class="tag">&lt;th&gt;</span><span class="pln">Имя</span><span class="tag">&lt;/th&gt;</span></code></li><li class="L1"><code class="lang-html"><span class="pln">        </span><span class="tag">&lt;th&gt;</span><span class="pln">Возраст</span><span class="tag">&lt;/th&gt;</span></code></li><li class="L2"><code class="lang-html"><span class="pln">        </span><span class="tag">&lt;th&gt;&lt;/th&gt;</span></code></li><li class="L3"><code class="lang-html"><span class="pln">    </span><span class="tag">&lt;/tr&gt;</span></code></li><li class="L4"><code class="lang-html"></code></li><li class="L5"><code class="lang-html"><span class="pln">    @foreach (var item in Model)</span></code></li><li class="L6"><code class="lang-html"><span class="pln">    {</span></code></li><li class="L7"><code class="lang-html"><span class="pln">        </span><span class="tag">&lt;tr&gt;</span></code></li><li class="L8"><code class="lang-html"><span class="pln">            </span><span class="tag">&lt;td&gt;</span><span class="pln">@item.Name</span><span class="tag">&lt;/td&gt;</span></code></li><li class="L9"><code class="lang-html"><span class="pln">            </span><span class="tag">&lt;td&gt;</span></code></li><li class="L0"><code class="lang-html"><span class="pln">                @item.Age</span></code></li><li class="L1"><code class="lang-html"><span class="pln">            </span><span class="tag">&lt;/td&gt;</span></code></li><li class="L2"><code class="lang-html"><span class="pln">            </span><span class="tag">&lt;td&gt;</span></code></li><li class="L3"><code class="lang-html"><span class="pln">                </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">asp-controller</span><span class="pun">=</span><span class="atv">"Home"</span><span class="pln"> </span><span class="atn">asp-action</span><span class="pun">=</span><span class="atv">"Edit"</span><span class="pln"> </span><span class="atn">asp-route-id</span><span class="pun">=</span><span class="atv">"@item.Id"</span><span class="tag">&gt;</span><span class="pln">Изменить</span><span class="tag">&lt;/a&gt;</span><span class="pln"> |</span></code></li><li class="L4"><code class="lang-html"><span class="pln">                </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">asp-controller</span><span class="pun">=</span><span class="atv">"Home"</span><span class="pln"> </span><span class="atn">asp-action</span><span class="pun">=</span><span class="atv">"Delete"</span><span class="pln"> </span><span class="atn">asp-route-id</span><span class="pun">=</span><span class="atv">"@item.Id"</span><span class="tag">&gt;</span><span class="pln">Удалить</span><span class="tag">&lt;/a&gt;</span></code></li><li class="L5"><code class="lang-html"><span class="pln">            </span><span class="tag">&lt;/td&gt;</span></code></li><li class="L6"><code class="lang-html"><span class="pln">        </span><span class="tag">&lt;/tr&gt;</span></code></li><li class="L7"><code class="lang-html"><span class="pln">    }</span></code></li><li class="L8"><code class="lang-html"><span class="tag">&lt;/table&gt;</span></code></li></ol></pre>
