@@ -8,6 +8,7 @@
         public string Name { get; set; }
         public int Age { get; set; }
     }
+
 5. Создадим базу userstore и таблицу Users. (Create database userstore, and Users table)
   create database userstore;
   create table Users 
